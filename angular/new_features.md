@@ -129,6 +129,7 @@ export const routes: Routes = [
   },
 ];
 ```
+The title will automatically update the browser’s title bar when navigating to this route.
 
 ---
 
@@ -193,6 +194,14 @@ export class ScopedService {}
 ### 1. Directive Composition API
 
 **Feature:** Compose behaviors using directives.
+The directive composition API lets you apply directives to a component's host element from within the component TypeScript class.
+
+https://angular.dev/guide/directives/directive-composition-api
+
+When the framework renders a component, Angular also creates an instance of each host directive.
+The directive's host bindings apply to the component's host element.
+
+- Angular applies host directives statically at compile time.
 
 **Example:**
 
@@ -213,7 +222,22 @@ export class ClickTrackerDirective {
 })
 export class ButtonComponent {}
 ```
+- *By default, host directive inputs and outputs are not exposed as part of the component's public API.
+ You can explicitly include inputs and outputs in your component's API by expanding the entry in 'hostDirectives':
 
+ ```ts
+ @Component({
+  selector: 'admin-menu',
+  template: 'admin-menu.html',
+  hostDirectives: [{
+    directive: MenuBehavior,
+    inputs: ['menuId'],
+    outputs: ['menuClosed'],
+  }],
+})
+export class AdminMenu { }
+```
+- You can also add 'hostDirectives' to other directives, in addition to components. This enables the transitive aggregation of multiple behaviors.
 ---
 
 ### 2. Improved Angular Material Components
@@ -388,10 +412,10 @@ export class LoginStatusComponent {
 
 ### 1. Module Federation Enhancements
 
-**Feature:** Improved support for micro-frontends.
+**Feature:**  Improved support for micro-frontends with Module Federation.Enhanced micro-frontend capabilities to allow seamless sharing of code and features across applications.
 
 **Example:**
-
+Set up Webpack Module Federation to expose or consume remote components:
 ```js
 // webpack.config.js for app1
 module.exports = {
@@ -413,6 +437,7 @@ import('app1/Button').then((module) => {
   // Use Button in your app
 });
 ```
+ - Usage: Share components between app1 and app2 without duplication.
 
 ---
 
