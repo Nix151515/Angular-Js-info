@@ -24,8 +24,18 @@ Injection context & DI
 RxJS
 New Angular features
 Micro frontends with Module Federation
-
+Schematics 
+this, bind, apply, call, closures, prototypes
 input.required, output without event emitters.
+
+
+TS
+OOP - cred ca gata
+Baze de date - 
+js - this, bind, apply, prototypes. De la fireship
+Ce intreb ls recrutare
+K8 si docker + pipes
+design patterns
 
 
 
